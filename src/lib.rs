@@ -29,6 +29,13 @@ pub trait InstructionProcessor {
     fn process_or(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
     fn process_and(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
 
+    // RV64I register-register word operations
+    fn process_addw(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
+    fn process_subw(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
+    fn process_sllw(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
+    fn process_srlw(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
+    fn process_sraw(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
+
     fn process_addi(&mut self, dec_insn: instruction_formats::IType) -> Self::InstructionResult;
     fn process_slli(
         &mut self,
@@ -48,6 +55,21 @@ pub trait InstructionProcessor {
     fn process_ori(&mut self, dec_insn: instruction_formats::IType) -> Self::InstructionResult;
     fn process_andi(&mut self, dec_insn: instruction_formats::IType) -> Self::InstructionResult;
 
+    // RV64I immediate word operations
+    fn process_addiw(&mut self, dec_insn: instruction_formats::IType) -> Self::InstructionResult;
+    fn process_slliw(
+        &mut self,
+        dec_insn: instruction_formats::ITypeShamtW,
+    ) -> Self::InstructionResult;
+    fn process_srliw(
+        &mut self,
+        dec_insn: instruction_formats::ITypeShamtW,
+    ) -> Self::InstructionResult;
+    fn process_sraiw(
+        &mut self,
+        dec_insn: instruction_formats::ITypeShamtW,
+    ) -> Self::InstructionResult;
+
     fn process_lui(&mut self, dec_insn: instruction_formats::UType) -> Self::InstructionResult;
     fn process_auipc(&mut self, dec_insn: instruction_formats::UType) -> Self::InstructionResult;
 
@@ -64,9 +86,16 @@ pub trait InstructionProcessor {
     fn process_lhu(&mut self, dec_insn: instruction_formats::IType) -> Self::InstructionResult;
     fn process_lw(&mut self, dec_insn: instruction_formats::IType) -> Self::InstructionResult;
 
+    // RV64I loads
+    fn process_lwu(&mut self, dec_insn: instruction_formats::IType) -> Self::InstructionResult;
+    fn process_ld(&mut self, dec_insn: instruction_formats::IType) -> Self::InstructionResult;
+
     fn process_sb(&mut self, dec_insn: instruction_formats::SType) -> Self::InstructionResult;
     fn process_sh(&mut self, dec_insn: instruction_formats::SType) -> Self::InstructionResult;
     fn process_sw(&mut self, dec_insn: instruction_formats::SType) -> Self::InstructionResult;
+
+    // RV64I store
+    fn process_sd(&mut self, dec_insn: instruction_formats::SType) -> Self::InstructionResult;
 
     fn process_jal(&mut self, dec_insn: instruction_formats::JType) -> Self::InstructionResult;
     fn process_jalr(&mut self, dec_insn: instruction_formats::IType) -> Self::InstructionResult;
@@ -76,10 +105,19 @@ pub trait InstructionProcessor {
     fn process_mulhu(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
     fn process_mulhsu(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
 
+    // RV64M
+    fn process_mulw(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
+
     fn process_div(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
     fn process_divu(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
     fn process_rem(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
     fn process_remu(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
+
+    // RV64M word operations
+    fn process_divw(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
+    fn process_divuw(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
+    fn process_remw(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
+    fn process_remuw(&mut self, dec_insn: instruction_formats::RType) -> Self::InstructionResult;
 
     fn process_fence(&mut self, dec_insn: instruction_formats::IType) -> Self::InstructionResult;
 
