@@ -1,6 +1,10 @@
-[workspace]
-
-members = [
-    "rrs-cli",
-    "rrs-lib",
-]
+[package]
+name = "rrs-lib"
+version = "0.1.0"
+authors = ["Greg Chadwick <mail@gregchadwick.co.uk>"]
+edition = "2018"
+license = "Apache-2.0"
+repository = "https://github.com/brevis-network/rrs-pico"
+keywords = ["riscv", "risc-v", "simulator", "emulator"]
+categories = ["emulators"]
+description = "A library for building RISC-V instruction set simulators"
